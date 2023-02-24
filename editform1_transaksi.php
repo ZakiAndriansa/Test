@@ -20,7 +20,7 @@
     <body>
         <form action="edit_transaksi.php"  method="post">
             <input type="hidden" name="id_transaksi" value="<?=$row['id_transaksi']?>">
-            <label for="nama_pelanggan">Nama Pelanggan</label>
+            <label for="nama_pelanggan">Nama Customer</label>
             <input type="text" id="username" name="username"  value="<?=$row['username']?>">
             
             <label for="nama_buku">Nama Buku</label>
