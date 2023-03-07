@@ -1,7 +1,6 @@
 <?php 
 require "db.php";
 
-$result = mysqli_query($conn, "SELECT * FROM pelanggan");
 ?>
  <!DOCTYPE html> 
  <head>
@@ -36,7 +35,7 @@ $result = mysqli_query($conn, "SELECT * FROM pelanggan");
             <th>No Handphone</th>
             <th class="aksi">Aksi</th>
         </tr>
-        <?php while ($row = mysqli_fetch_array($result)) : ?>
+        <?php foreach (getCustomers() as $row) { ?>
         <tr>
             <td class="center-align"><?=$row['id_pelanggan']?></td>
             <td><?=$row['nama_pelanggan']?></td>
@@ -47,7 +46,7 @@ $result = mysqli_query($conn, "SELECT * FROM pelanggan");
                 <a href="delete_pelanggan.php?id_pelanggan=<?=$row['id_pelanggan']?>" class="button2">Hapus</a>
             </td>
         </tr>
-        <?php endwhile; ?>
+        <?php } ?>
     </table>
 </div>
  </body>

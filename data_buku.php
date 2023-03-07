@@ -1,7 +1,5 @@
 <?php 
 require 'db.php';
-$sql = "SELECT * FROM buku";
-$result = mysqli_query($conn, $sql );
 ?>
 
 <!Doctype html>
@@ -31,27 +29,31 @@ $result = mysqli_query($conn, $sql );
     <h2>Data Buku Toko ABCDE</h2>
     <a href="insertform_buku.php" class="button3">Tambah Data Buku</a>
     <table>
-        <tr>
-            <!-- <th>No</th> -->
-            <th class="aksi">ID Buku</th>
-            <th>Nama Buku</th>
-            <th>Pengarang</th>
-            <th>Harga</th>
-            <th class="aksi">Aksi</th>
-        </tr>     
-        <?php while ($row = mysqli_fetch_assoc($result)):?>
-        <tr>
-            <!-- <td></td> -->
-            <td class="center-align"><?= $row['id_buku'] ?></td>
-            <td><?= $row['nama_buku'] ?></td>
-            <td><?= $row['pengarang'] ?></td>
-            <td><?= $row['harga'] ?></td>
-            <td class="center-align">
-                <a href="editform_buku.php?id_buku=<?= $row['id_buku']?>" class="button1">Edit</a>
-                <a href="delete_buku.php?id_buku=<?= $row['id_buku']?>" class="button2">Hapus</a>
-            </td>   
-        </tr>
-        <?php endwhile; ?>
+        <thead>
+            <tr>
+                <th class="aksi">ID Buku</th>
+                <th>Nama Buku</th>
+                <th>Pengarang</th>
+                <th>Harga</th>
+                <th class="aksi">Aksi</th>
+            </tr>  
+        </thead>  
+        <tbody> 
+            <?php 
+                foreach (getBooks() as $row){ ?>
+            <tr>
+                <!-- <td></td> -->
+                <td class="center-align"><?= $row['id_buku'] ?></td>
+                <td><?= $row['nama_buku'] ?></td>
+                <td><?= $row['pengarang'] ?></td>
+                <td><?= $row['harga'] ?></td>
+                <td class="center-align">
+                    <a href="form_buku.php?id_buku=<?= $row['id_buku']?>" class="button1">Edit</a>
+                    <a href="delete_buku.php?id_buku=<?= $row['id_buku']?>" class="button2">Hapus</a>
+                </td>   
+            </tr>
+            <?php } ?>
+        </tbody>
     </table>
 </div>
 </body> 

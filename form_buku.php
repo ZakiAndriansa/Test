@@ -4,15 +4,13 @@ require "db.php";
 $id_buku = $_GET["id_buku"] ?? 0 ; 
 
 if ($id_buku > 0) {
-    $sql = "SELECT * FROM buku WHERE id_buku = '$id_buku'";
-    $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_array($result)):
-        $id_buku = $row['id_buku'];
-        $nama_buku = $row['nama_buku'];
-        $pengarang = $row['pengarang'];
-        $harga = $row['harga'];
-    endwhile;
-    $form_action = 'edit_buku.php';
+    $row = getBookbyID($id_buku);
+    $id_buku = $row['id_buku'];
+    $nama_buku = $row['nama_buku'];
+    $pengarang = $row['pengarang'];
+    $harga = $row['harga'];
+
+    $form_action = "edit_buku.php";
     $title = "Edit Data Buku";
 }
 else {

@@ -1,10 +1,6 @@
 <?php 
 require "db.php";
 
-$sql = "SELECT transaksi.id_transaksi, transaksi.kuantitas, transaksi.harga, transaksi.total_pembayaran, pelanggan.id_pelanggan, pelanggan.nama_pelanggan, buku.id_buku, buku.nama_buku FROM pelanggan INNER JOIN transaksi on pelanggan.id_pelanggan = transaksi.id_pelanggan INNER JOIN buku ON buku.id_buku = transaksi.id_buku ORDER by id_transaksi";
-
-$result = mysqli_query($conn, $sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +38,7 @@ $result = mysqli_query($conn, $sql);
             <th>Total Harga</th>
             <th class="aksi">Aksi</th>
         </tr>
-        <?php while ($row = mysqli_fetch_array($result)): 
+        <?php foreach (getTransaction() as $row){ 
             $total_pembayaran = $row['kuantitas']*$row['harga'] 
         ?> 
         <tr>
@@ -57,7 +53,7 @@ $result = mysqli_query($conn, $sql);
                 <a href="delete_transaksi.php?id_transaksi=<?=$row['id_transaksi']?>" class="button2">Hapus</a>
             </td>
         </tr>
-        <?php endwhile; ?>
+        <?php } ?>
     </table>
 </div>
 </body>

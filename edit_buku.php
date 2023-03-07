@@ -5,9 +5,8 @@ $id_buku = $_POST['id_buku'];
 $nama_buku = $_POST['nama_buku'];
 $pengarang = $_POST['pengarang'];
 $harga = $_POST['harga'];
+$result = updateBook($id_buku, $nama_buku, $pengarang, $harga);
 
-$sql = "UPDATE buku SET nama_buku ='$nama_buku', pengarang ='$pengarang', harga ='$harga' WHERE id_buku ='$id_buku'";
-$result = mysqli_query($conn, $sql);
 if ($result) {
     echo "<script>
             alert('Edit Berhasil');

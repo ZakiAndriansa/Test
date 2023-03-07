@@ -2,8 +2,7 @@
 require "db.php";
 
 $id_buku = $_GET["id_buku"];
-$sql = "DELETE FROM buku WHERE id_buku='$id_buku'";
-$result = mysqli_query($conn, $sql);
+$result = deleteBuku($id_buku);
 
 if(!$result) {
     echo "<script>    
