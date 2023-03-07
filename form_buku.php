@@ -10,7 +10,7 @@ if ($id_buku > 0) {
     $pengarang = $row['pengarang'];
     $harga = $row['harga'];
 
-    $form_action = "edit_buku.php";
+    $form_action = "action.php?action=update_book";
     $title = "Edit Data Buku";
 }
 else {
@@ -18,7 +18,7 @@ else {
     $nama_buku = '';
     $pengarang = '';
     $harga = '';
-    $form_action = 'insert_buku.php';
+    $form_action = 'action.php?action=insert_book';
     $title = "Tambah Data Buku";
 }
 ?>

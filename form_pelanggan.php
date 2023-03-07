@@ -6,27 +6,25 @@ $id_pelanggan = $_GET['id_pelanggan'] ?? 0;
 // $id_pelanggan = !empty($_GET['id_pelanggan']) ? $_GET['id_pelanggan'] : 0;
 
 if ($id_pelanggan > 0 ) {
-    $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id_pelanggan'";
-    $result = mysqli_query($conn, $sql );
-    while ($row=mysqli_fetch_array($result)): 
-        $id_pelanggan = $row['id_pelanggan'];
-        $nama_pelanggan = $row['nama_pelanggan'];
-        $email = $row['email'];
-        $no_hp = $row['no_hp'];
-    endwhile;
-    $form_action = "edit_pelanggan.php";
+    $row = getCustomerbyID($id_pelanggan);
+    $id_pelanggan = $row['id_pelanggan'];
+    $nama_pelanggan = $row['nama_pelanggan'];
+    $email = $row['email'];
+    $no_hp = $row['no_hp'];
+    $form_action = "action.php?action=update_customer";
     $title = "Edit Data Pelanggan";
 } else {
     $id_pelanggan = '';
     $nama_pelanggan = '';
     $email = '';
     $no_hp = '';
-    $form_action = "insert_pelanggan.php";
+    $form_action = "action.php?action=insert_customer";
     $title = "Tambah Data Pelanggan";
 }
 ?>
 
 <!DOCTYPE html>
+<head>
 <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Penjualan</title>

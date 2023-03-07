@@ -26,7 +26,7 @@ require "db.php";
 </nav>
 <div class="container">
 <h2>Data Pelanggan Toko ABCDE</h2>
-    <a href="insertform_pelanggan.php" class="button3">Tambah Data Pelanggan</a>
+    <a href="form_pelanggan.php" class="add-button">Tambah Data Pelanggan</a>
     <table>
         <tr>
             <th class="aksi">ID Pelanggan</th>
@@ -42,8 +42,8 @@ require "db.php";
             <td><?=$row['email']?></td>
             <td><?=$row['no_hp']?></td>
             <td class="center-align">
-                <a href="editform_pelanggan.php?id_pelanggan=<?=$row['id_pelanggan']?>" class="button1">Edit</a>
-                <a href="delete_pelanggan.php?id_pelanggan=<?=$row['id_pelanggan']?>" class="button2">Hapus</a>
+                <a href="form_pelanggan.php?id_pelanggan=<?=$row['id_pelanggan']?>" class="edit-button">Edit</a>
+                <a href="action.php?id_pelanggan=<?=$row['id_pelanggan']?>&action=delete_customer" class="del-button">Hapus</a>
             </td>
         </tr>
         <?php } ?>

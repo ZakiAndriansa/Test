@@ -27,7 +27,7 @@ require "db.php";
 </nav>
 <div class="container">
     <h2>Data Transaksi Toko ABCDE</h2>
-    <a href="insertform_transaksi.php?" class="button3">Tambah Data Transaksi</a>
+    <a href="form_transaksi.php?" class="add-button">Tambah Data Transaksi</a>
     <table>
         <tr>
             <th class="aksi">Id Transaksi</th>
@@ -49,8 +49,8 @@ require "db.php";
             <td><?=$row['harga']?></td>
             <td ><?=$total_pembayaran ?></td>
             <td class="center-align">
-                <a href="editform1_transaksi.php?id_transaksi=<?=$row['id_transaksi']?>" class="button1">Edit</a>
-                <a href="delete_transaksi.php?id_transaksi=<?=$row['id_transaksi']?>" class="button2">Hapus</a>
+                <a href="form_transaksi.php?id_transaksi=<?=$row['id_transaksi']?>" class="edit-button">Edit</a>
+                <a href="action.php?id_transaksi=<?=$row['id_transaksi']?>&action=delete_transaction" class="del-button">Hapus</a>
             </td>
         </tr>
         <?php } ?>

@@ -1,5 +1,6 @@
 <?php 
 require 'db.php';
+
 ?>
 
 <!Doctype html>
@@ -27,7 +28,7 @@ require 'db.php';
 
 <div class="container">
     <h2>Data Buku Toko ABCDE</h2>
-    <a href="insertform_buku.php" class="button3">Tambah Data Buku</a>
+    <a href="form_buku.php" class="add-button">Tambah Data Buku</a>
     <table>
         <thead>
             <tr>
@@ -48,8 +49,8 @@ require 'db.php';
                 <td><?= $row['pengarang'] ?></td>
                 <td><?= $row['harga'] ?></td>
                 <td class="center-align">
-                    <a href="form_buku.php?id_buku=<?= $row['id_buku']?>" class="button1">Edit</a>
-                    <a href="delete_buku.php?id_buku=<?= $row['id_buku']?>" class="button2">Hapus</a>
+                    <a href="form_buku.php?id_buku=<?= $row['id_buku']?>" class="edit-button">Edit</a>
+                    <a href="action.php?id_buku=<?= $row['id_buku']?>&action=delete_book" class="del-button">Hapus</a>
                 </td>   
             </tr>
             <?php } ?>

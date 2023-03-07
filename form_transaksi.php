@@ -1,37 +1,85 @@
 <?php
  require "db.php";
- require "fetch_data.php"
+
+ $id_transaksi = $_GET['id_transaksi'] ?? 0 ;
+
+ if($id_transaksi > 0) {
+    $row = getTransactionbyID($id_transaksi);
+    $id_transaksi = $row['id_transaksi'];
+    $id_pelanggan = $row['id_pelanggan'];
+    $id_buku = $row['id_buku'];
+    $nama_pelanggan = $row['nama_pelanggan'];
+    $nama_buku = $row['nama_buku'];
+    $kuantitas = $row['kuantitas'];
+    $form_action = "action.php?action=update_transaction";
+    $title = "Edit Data Transaksi";
+ } else {
+    $id_transaksi = '';
+    $id_pelanggan = '';
+    $id_buku = '';
+    $nama_pelanggan = '';
+    $nama_buku = '';
+    $kuantitas = '';
+    $form_action = "action.php?action=insert_transaction";
+    $title = "Tambah Data Transaksi";
+ }
+
 ?>
 
 <!DOCTYPE html> 
-<head></head>
-<body> 
-    <form>
-        <input type="hidden" name="id_transaksi">
+<head>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Penjualan</title>
+    <link rel="stylesheet" href="css/bootstrap-grid.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="welcome.php">Beranda</a></li>
+            <li><a href="data_buku.php">Data Buku</a></li>
+            <li><a href="data_pelanggan.php">Data Pelanggan</a></li>
+            <li><a href="data_transaksi.php">Data Transaksi</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+    <h2 style="margin-bottom:20px"><?=$title; ?></h2>
+    <form action="<?=$form_action?>" method="post">
+        <input type="hidden" name="id_transaksi" value="<?=$id_transaksi?>">
+        <!-- pilih nama pelanggan -->
         <label for="nama_pelanggan">Nama Pelanggan</label>
-        <select name="nama_pelanggan" id="nama_pelanggan">
-        <option>Pilih Nama Pelanggan</option>
-            <?php foreach ($options1 as $option) { ?>
-                <option><?=$option['nama_pelanggan'];?></option>
-            <?php
-            } ?>
+        <select name="id_pelanggan" id="nama_pelanggan">
+            <option disabled selected>Pilih nama pelanggan...</option>
+            <?php foreach (fetchCustomers() as $options) {
+                //tanda (?) untuk if, tanda (:) untuk else
+                $selected = $options['id_pelanggan']==$id_pelanggan ? 'selected': '';
+            ?>
+            <option value = "<?=$options['id_pelanggan']?>" <?=$selected?>>
+                <?=$options['nama_pelanggan']?>
+            </option>
+            <?php } ?>
         </select>
-        <br>
+        <!-- pilih nama buku -->
         <label for="nama_buku">Nama Buku</label>
-        <select name="nama_buku" id="nama_buku">
-        <option>Pilih Nama Buku</option>
-            <?php foreach ($options2 as $option) { ?>
-                <option><?=$option['nama_buku'];?></option>
-            <?php
-            } ?>
+        <select name="id_buku" id="nama_buku">
+            <option disabled selected>Pilih nama buku...</option>
+            <?php foreach (fetchBooks() as $options) { 
+                $selected = $options['id_buku']==$id_buku ? 'selected' : '';
+            ?>
+            <option value="<?=$options['id_buku']?>" <?=$selected?>>
+                <?=$options['nama_buku']?>
+            </option>
+            <?php } ?>
         </select>
-        <br>
-        <label for="kuantitas">Jumlah Pembelian</label>
-        <input type="number" id="kuantitas" name="kuantitas"><br>
-        <label for="harga">Harga</label>
-        <input type="number" id="harga" name="harga"> <br>
-        <input type="submit" value="Simpan"/>
+        <!-- input kuantitas -->
+        <label for="kuantitas">Kuantitas</label>
+        <input type="number" id="kuantitas" name="kuantitas" value="<?=$kuantitas?>">
+        <input type="submit" value="Simpan">
     </form>
 </body>
-
 </html
