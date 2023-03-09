@@ -38,7 +38,7 @@ require "db.php";
             <th>Total Harga</th>
             <th class="aksi">Aksi</th>
         </tr>
-        <?php foreach (getTransaction() as $row){ 
+        <?php foreach (getTransactions() as $row){ 
             $total_pembayaran = $row['kuantitas']*$row['harga'] 
         ?> 
         <tr>

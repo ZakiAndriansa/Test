@@ -5,6 +5,7 @@ require "db.php";
 $aksi = $_GET['action'];
 
 switch ($aksi) {
+    // aksi untuk insert ke data buku
     case 'insert_book':
         $result = insertBook($_POST['nama_buku'], $_POST['pengarang'], $_POST['harga']);
         if ($result) {
@@ -15,6 +16,7 @@ switch ($aksi) {
             $loc = "data_buku.php";
         }
         break;
+    // aksi untuk edit data buku
     case 'update_book':
         // $id_buku = $_POST['id_buku'];
         // $nama_buku = $_POST['nama_buku'];
@@ -30,6 +32,7 @@ switch ($aksi) {
             $loc = "data_buku.php";
         }
         break;
+    //aksi untuk delete data buku
     case 'delete_book':
         $result = deleteBook($_GET['id_buku']);
         if ($result) {
@@ -40,6 +43,7 @@ switch ($aksi) {
             $loc = "data_buku.php";
         }
         break;
+    //aksi untuk insert data pelanggan
     case 'insert_customer':
         $result = insertCustomers($_POST['nama_pelanggan'], $_POST['email'], $_POST['no_hp']);
         if ($result) {
@@ -50,6 +54,7 @@ switch ($aksi) {
             $loc = "data_pelanggan.php";
         }
         break;
+    //aksi untuk edit data pelanggan
     case 'update_customer':
         $result = updateCustomer($_POST['id_pelanggan'], $_POST['nama_pelanggan'], $_POST['email'], $_POST['no_hp']);
         if ($result) {
@@ -60,6 +65,7 @@ switch ($aksi) {
             $loc = "data_pelanggan.php";
         }
         break;
+    //aksi untuk delete data pelanggan
     case 'delete_customer':
         $result = deleteCustomer($_GET['id_pelanggan']);
         if ($result) {
@@ -70,6 +76,7 @@ switch ($aksi) {
             $loc = "data_pelanggan.php";
         }
         break;
+    //aksi untuk insert data transaksi
     case 'insert_transaction':
         $id_buku = $_POST['id_buku'];
         $row = getHargaBuku($id_buku);
@@ -84,6 +91,7 @@ switch ($aksi) {
             $loc = "data_transaksi.php";
         }
         break;
+    //aksi untuk edit data transaksi
     case 'update_transaction':
         $id_buku = $_POST['id_buku'];
         $row = getHargaBuku($id_buku);
@@ -98,6 +106,7 @@ switch ($aksi) {
             $loc = "data_transaksi.php";
         }
         break;       
+    //aksi untuk delete data transaksi
     case 'delete_transaction':
         $result = deleteTransaction($_GET['id_transaksi']);
         if ($result) {
