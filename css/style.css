@@ -146,7 +146,6 @@ th, td {
 }
 
 form {
-    width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -185,7 +184,13 @@ img {
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 95%;
+    width: 90%;
+}
+
+.container-login {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 .aksi {

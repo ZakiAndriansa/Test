@@ -177,4 +177,12 @@ function deleteTransaction($id_transaksi){
     return $result;
 }
 
+/** fungsi untuk query cek email dan password ada atau tidak di database */
+function cekLogin($email, $password){
+    $conn = conn();
+    $sql = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 ?> 
