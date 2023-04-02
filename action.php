@@ -1,51 +1,54 @@
 <?php
-require "db.php";
-
-
+require "funcs.php";
 $aksi = $_GET['action'];
 
 switch ($aksi) {
-    // aksi untuk insert ke data buku
-    case 'insert_book':
-        $result = insertBook($_POST['nama_buku'], $_POST['pengarang'], $_POST['harga']);
+    // Aksi untuk kopi
+    // aksi untuk insert ke data kopi
+    case 'insert_kopi':
+        $nama_kopi = $_POST['nama_kopi'];
+        $harga = $_POST['harga'];
+        $result = insertKopi($nama_kopi, $harga);
         if ($result) {
-            $msg = "Tambah Buku Berhasil";
-            $loc = "data_buku.php";
+            $msg = "Tambah Kopi Berhasil";
+            $loc = "data_kopi.php";
         } else {
-            $msg = "Tambah Buku Gagal";
-            $loc = "data_buku.php";
+            $msg = "Tambah Kopi Gagal";
+            $loc = "data_kopi.php";
         }
         break;
-    // aksi untuk edit data buku
-    case 'update_book':
-        // $id_buku = $_POST['id_buku'];
-        // $nama_buku = $_POST['nama_buku'];
-        // $pengarang = $_POST['pengarang'];
-        // $harga = $_POST['harga'];
-        // $result = updateBook($id_buku, $nama_buku, $pengarang, $harga);
-        $result = updateBook($_POST['id_buku'], $_POST['nama_buku'], $_POST['pengarang'], $_POST['harga']);
+
+    // aksi untuk edit data kopi
+    case 'update_kopi':
+        $id_kopi = $_POST["id_kopi"];
+        $nama_kopi = $_POST['nama_kopi'];
+        $harga = $_POST['harga'];
+        $result = updateKopi($id_kopi, $nama_kopi, $harga);
         if ($result) {
-            $msg = "Edit Buku Berhasil";
-            $loc = "data_buku.php";
+            $msg = "Edit Kopi Berhasil";
+            $loc = "data_kopi.php";
         } else {
-            $msg = "Edit Buku Gagal";
-            $loc = "data_buku.php";
+            $msg = "Edit Kopi Gagal";
+            $loc = "data_kopi.php";
         }
         break;
-    //aksi untuk delete data buku
-    case 'delete_book':
-        $result = deleteBook($_GET['id_buku']);
+    //aksi untuk delete data kopi
+    case 'delete_kopi':
+        $result = deleteKopi($_GET['id_kopi']);
         if ($result) {
-            $msg = "Hapus Buku Berhasil";
-            $loc = "data_buku.php";
+            $msg = "Hapus Kopi Berhasil";
+            $loc = "data_kopi.php";
         } else {
-            $msg = "Hapus Buku Gagal";
-            $loc = "data_buku.php";
+            $msg = "Hapus Kopi Gagal";
+            $loc = "data_kopi.php";
         }
         break;
+
+    
+    // Aksi Pelanggan
     //aksi untuk insert data pelanggan
     case 'insert_customer':
-        $result = insertCustomers($_POST['nama_pelanggan'], $_POST['email'], $_POST['no_hp']);
+        $result = insertPelanggan($_POST['nama_pelanggan'], $_POST['email'], $_POST['no_hp'], $_POST['gambar_lama']);
         if ($result) {
             $msg = "Tambah Pelanggan Berhasil";
             $loc = "data_pelanggan.php";
@@ -56,7 +59,7 @@ switch ($aksi) {
         break;
     //aksi untuk edit data pelanggan
     case 'update_customer':
-        $result = updateCustomer($_POST['id_pelanggan'], $_POST['nama_pelanggan'], $_POST['email'], $_POST['no_hp']);
+        $result = updatePelanggan($_POST['id_pelanggan'], $_POST['nama_pelanggan'], $_POST['email'], $_POST['no_tlp']);
         if ($result) {
             $msg = "Edit Pelanggan Berhasil";
             $loc = "data_pelanggan.php";
@@ -67,7 +70,7 @@ switch ($aksi) {
         break;
     //aksi untuk delete data pelanggan
     case 'delete_customer':
-        $result = deleteCustomer($_GET['id_pelanggan']);
+        $result = deletePelanggan($_GET['id_pelanggan']);
         if ($result) {
             $msg = "Hapus Pelanggan Berhasil";
             $loc = "data_pelanggan.php";
@@ -78,11 +81,11 @@ switch ($aksi) {
         break;
     //aksi untuk insert data transaksi
     case 'insert_transaction':
-        $id_buku = $_POST['id_buku'];
-        $row = getHargaBuku($id_buku);
+        $id_kopi = $_POST['id_kopi'];
+        $row = queryHargaKopi($id_kopi);
         $harga = $row['harga'];
-        $total_harga = $harga * $_POST['kuantitas'];
-        $result = insertTransaction($_POST['id_pelanggan'], $_POST['id_buku'], $_POST['kuantitas'], $harga, $total_harga);
+        $total_harga = $harga * $_POST['jumlah'];
+        $result = insertTransaksi($_POST['id_pelanggan'], $_POST['id_kopi'], $_POST['jumlah'], $_POST['tanggal'], $harga, $total_harga);
         if ($result) {
             $msg = "Tambah Transaksi Berhasil";
             $loc = "data_transaksi.php";
@@ -93,11 +96,11 @@ switch ($aksi) {
         break;
     //aksi untuk edit data transaksi
     case 'update_transaction':
-        $id_buku = $_POST['id_buku'];
-        $row = getHargaBuku($id_buku);
+        $id_kopi = $_POST['id_kopi'];
+        $row = queryHargaKopi($id_kopi);
         $harga = $row['harga'];
-        $total_harga = $harga * $_POST['kuantitas'];
-        $result = updateTransaction($_POST['id_transaksi'], $_POST['id_pelanggan'], $_POST['id_buku'], $_POST['kuantitas'], $harga, $total_harga);
+        $total_harga = $harga * $_POST['jumlah'];
+        $result = updateTransaksi($_POST['id_transaksi'], $_POST['id_pelanggan'], $_POST['id_kopi'], $_POST['jumlah'], $harga, $total_harga);
         if ($result) {
             $msg = "Edit Transaksi Berhasil";
             $loc = "data_transaksi.php";
@@ -108,7 +111,7 @@ switch ($aksi) {
         break;       
     //aksi untuk delete data transaksi
     case 'delete_transaction':
-        $result = deleteTransaction($_GET['id_transaksi']);
+        $result = deleteTransaksi($_GET['id_transaksi']);
         if ($result) {
             $msg = "Hapus Transaksi Berhasil";
             $loc = "data_transaksi.php";

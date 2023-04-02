@@ -1,5 +1,6 @@
 body {
     margin:0;
+    font-family: 'Poppins', sans-serif;
 }
 
 nav {
@@ -7,10 +8,7 @@ nav {
     position: sticky;
     z-index:1;
     width: 100%;
-    text-transform: uppercase;
     /* letter-spacing: 1px; */
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
 }
 
 ul {
@@ -33,15 +31,11 @@ nav ul {
 nav li a {
     text-decoration: none;
     color: black;
+    font-size: 1.1rem;
+    margin: 0 1rem;
 }
 
-h1, h2, h3 {
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: auto;
-}
-
-h2 {
-    text-transform: uppercase;
+h1 {
     text-align: center;
     font-size: 25px;
 }
@@ -50,7 +44,6 @@ p {
     margin-top: auto;
 }
 table {
-    font-family: 'Roboto Condensed', sans-serif;
     width: 100%;
     border-collapse: collapse;
     /* margin-left: auto;
@@ -67,22 +60,25 @@ table, th, td {
 table, th {
     background-color: #021b2a;
     color:#FFFFFF;
-    height: 40px;
-    text-transform: uppercase;
-    
+    text-transform: uppercase; 
 }
 
 table, td {
     background-color: #FFFFFF;
     color:black;
-    height: 20px;
     text-transform:none;
-
 }
 
 th, td {
-    padding: 5px;
+    padding: 1% 2%;
+    box-sizing: border-box;
     border: 1px solid #ddd;
+    text-align: center;
+}
+
+.center-action{
+    width: 15%;
+    margin: auto;
 }
 
 .center-align {
@@ -99,7 +95,7 @@ th, td {
     color:#FFFFFF;
     display: inline-block;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 1.1rem;
 }
 
 .del-button {
@@ -111,7 +107,7 @@ th, td {
     color:#FFFFFF;
     display: inline-block;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 1.1rem;
 }
 
 .add-button {
@@ -145,22 +141,41 @@ th, td {
     text-transform: uppercase;
 }
 
+section{
+    text-align: left;
+    width: 30%;
+    margin: 3% auto;
+    border-radius: 5%;
+    padding: 3% 0;
+    box-sizing: border-box;
+    background-color: rgba(219, 235, 244, .5);
+}
+
 form {
-    margin-left: auto;
-    margin-right: auto;
+   margin-top: 10%;
 }
 
 input, select {
-    width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px auto;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    
 }
 
-input[type=submit]{
+label{
+    margin: 2% 14%;
+}
+
+#gambar{
+    border: none;
+    margin: 8px auto;
+    padding: 0;
+}
+
+button{
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -173,12 +188,6 @@ input[type=submit]{
 
 option {
     color: #545454;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    text-align: center;
 }
 
 .container {
@@ -195,6 +204,13 @@ img {
 
 .aksi {
     width: 120px;
+    
 }
 
+.aksi2{
+    width: 250px;
+}
 
+.aksi3{
+    width: 270px;
+}
